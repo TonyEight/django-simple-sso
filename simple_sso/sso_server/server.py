@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import urlparse
+import pytz
 from django.conf.urls import patterns, url
 from django.contrib import admin
 from django.contrib.admin.options import ModelAdmin
@@ -73,7 +74,7 @@ class AuthorizeView(View):
         return HttpResponseForbidden('Token timed out')
 
     def check_token_timeout(self):
-        delta = datetime.datetime.now() - self.token.timestamp
+        delta = datetime.datetime.now(pytz.utc) - self.token.timestamp
         if delta > self.server.token_timeout:
             self.token.delete()
             return False

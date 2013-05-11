@@ -26,7 +26,10 @@ setup(name="django-simple-sso",
     license='BSD',
     packages=find_packages(),
     install_requires=[
-        'itsdangerous'
+        'itsdangerous',
+        'webservices',
+        'requests',
+        'pytz',
     ],
     extras_require = {
         'server': [
