@@ -175,8 +175,8 @@ The user object contains must contain at least the following data:
 Implementation
 **************
 
-Install Caveats
-===============
+Installing requirements
+=======================
 
 * Install webservices:
 
@@ -191,11 +191,11 @@ Install Caveats
     pip install requests
 
 
-On the server
-=============
+Setting up the server
+=====================
 
-* Add ``simple_sso.sso_server`` to ``INSTALLED_APPS``.
-* Use the ``get_urls`` method of the ``simple_sso.sso_server.server.Server`` class to include the url patterns for the server. Example:
+* Add ``simple_sso.sso_server`` to ``INSTALLED_APPS``
+* Use the ``get_urls`` method of the ``simple_sso.sso_server.server.Server`` class to include the url patterns for the server:
 
 .. code-block:: python
 
@@ -213,11 +213,10 @@ On the server
     urlpatterns += authserver.get_urls()
 
 
-On the client
-=============
+Setting up a client
+===================
 
-* Create a new instance of ``simple_sso.sso_server.models.Client`` on the
-  **Server**.
+* From the admin page on the **Server**, create a new ``Consumer``
 * Add the ``SIMPLE_SSO_SECRET`` and ``SIMPLE_SSO_KEY`` settings as provided by
   the **Server**'s ``simple_sso.sso_server.models.Client`` model.
 * Add the ``SIMPLE_SSO_SERVER`` setting which is the absolute URL pointing to
