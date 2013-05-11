@@ -175,13 +175,18 @@ The user object contains must contain at least the following data:
 Implementation
 **************
 
+Install Caveats
+===============
+* Install webservices :
+  pip install webservices
+
 On the server
 =============
 
 * Add ``simple_sso.sso_server`` to ``INSTALLED_APPS``.
 * Use the ``get_urls`` method of the ``simple_sso.sso_server.server.Server`` class to include the url patterns for the server. Example:
 
-.. code:: python
+.. code-block:: python
 
     import simple_sso.sso_server.server.Server
 
