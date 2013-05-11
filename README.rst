@@ -217,13 +217,7 @@ Setting up a client
 
 * From the admin page on the **Server**, create a new ``Consumer``
 * Edit the ``settings.py`` file on the **Client** and add those 3 variables:
-    * ``SSO_SERVER``: the complete URL of the server pointing to the SSO facility
-
-.. code::
-
-    SSO_SERVER = 'http://example.org/authserver/'
-
-
+    * ``SSO_SERVER``: the complete URL of the server pointing to the SSO facility like ``SSO_SERVER = 'http://example.org/authserver/'``
     * ``SSO_PUBLIC_KEY``: the public key provided by the **Server** admin page
     * ``SSO_PRIVATE_KEY``: the public key provided by the **Server** admin page
 * Use the ``get_urls`` method of the ``simple_sso.sso_client.client.Client`` class to include the url patterns:
@@ -242,4 +236,3 @@ Setting up a client
         url(r'^auth/', include(authserver.get_urls())),
         url(r'^admin/', include(admin.site.urls)),
     )
-
