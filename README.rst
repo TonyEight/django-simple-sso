@@ -10,13 +10,13 @@ Server
 ======
 
 The server is a Django website that holds all the user information and
-authenticates users.
+authenticates users. It is the provider.
 
 Client
 ======
 
-The server is a Django website that provides login via SSO using the **Server**.
-It does not hold any user information.
+The client is a Django website that provides login via SSO using the **Server**.
+It does not hold any user information. It is just a consumer.
 
 Key
 ===
@@ -179,9 +179,9 @@ On the server
 =============
 
 * Add ``simple_sso.sso_server`` to ``INSTALLED_APPS``.
-* Create an instance (potentially of a subclass) of
-  ``simple_sso.server.SimpleSSOServer`` and include the return value of the 
-  ``get_urls`` method on that instance into your url patterns.
+* Use the ``get_urls`` method of the ``simple_sso.sso_server.server.Server`` class to include the url patterns for the server.
+  code-block:: python
+   import simple_sso.sso_server.server.Server
 
 
 On the client
