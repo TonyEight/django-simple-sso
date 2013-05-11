@@ -180,7 +180,7 @@ On the server
 
 * Add ``simple_sso.sso_server`` to ``INSTALLED_APPS``.
 * Use the ``get_urls`` method of the ``simple_sso.sso_server.server.Server`` class to include the url patterns for the server.
-  code-block:: python
+  .. code-block:: python
    import simple_sso.sso_server.server.Server
 
 
