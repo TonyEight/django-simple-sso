@@ -215,7 +215,7 @@ Setting up the server
 Setting up a client
 ===================
 
-* From the admin page on the **Server**, create a new ``Consumer``
+* From the admin page on the **Server**, create a new ``Consumer``.
 * Edit the ``settings.py`` file on the **Client** and add those 3 variables:
     * ``SSO_SERVER``: the complete URL of the server pointing to the SSO facility like ``SSO_SERVER = 'http://example.org/authserver/'``
     * ``SSO_PUBLIC_KEY``: the public key provided by the **Server** admin page
