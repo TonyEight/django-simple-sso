@@ -195,7 +195,7 @@ Setting up the server
 =====================
 
 * Add ``simple_sso.sso_server`` to ``INSTALLED_APPS``
-* Use the ``get_urls`` method of the ``simple_sso.sso_server.server.Server`` class to include the url patterns for the server:
+* Use the ``get_urls`` method of the ``simple_sso.sso_server.server.Server`` class to include the url patterns:
 
 .. code-block:: python
 
@@ -207,19 +207,38 @@ Setting up the server
     authserver = Server()
 
     urlpatterns = patterns('',
+        url(r'^authserver/', include(authserver.get_urls())),
         url(r'^admin/', include(admin.site.urls)),
     )
-
-    urlpatterns += authserver.get_urls()
 
 
 Setting up a client
 ===================
 
 * From the admin page on the **Server**, create a new ``Consumer``
-* Add the ``SIMPLE_SSO_SECRET`` and ``SIMPLE_SSO_KEY`` settings as provided by
-  the **Server**'s ``simple_sso.sso_server.models.Client`` model.
-* Add the ``SIMPLE_SSO_SERVER`` setting which is the absolute URL pointing to
-  the root where the ``simple_sso.sso_server.urls`` where include on the
-  **Server**.
-* Add the ``simple_sso.sso_client.urls`` patterns somewhere on the client.
+* Edit the ``settings.py`` file on the **Client** and add those 3 variables:
+   * ``SSO_SERVER``: the complete URL of the server pointing to the SSO facility
+
+.. code-block::
+
+    SSO_SERVER = 'http://example.org/authserver/'
+
+   * ``SSO_PUBLIC_KEY``: the public key provided by the **Server** admin page
+   * ``SSO_PRIVATE_KEY``: the public key provided by the **Server** admin page
+* Use the ``get_urls`` method of the ``simple_sso.sso_client.client.Client`` class to include the url patterns:
+
+.. code-block:: python
+
+    from django.conf import settings
+    from django.conf.urls import patterns, include, url
+    from django.contrib import admin
+    from simple_sso.sso_client.client import Client
+
+    admin.autodiscover()
+    client = Client(settings.SSO_SERVER, settings.SSO_PUBLIC_KEY, settings.SSO_PRIVATE_KEY)
+
+    urlpatterns = patterns('',
+        url(r'^auth/', include(authserver.get_urls())),
+        url(r'^admin/', include(admin.site.urls)),
+    )
+
