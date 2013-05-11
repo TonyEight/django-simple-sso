@@ -199,7 +199,18 @@ On the server
 
 .. code-block:: python
 
-    import simple_sso.sso_server.server.Server
+    from django.conf.urls import patterns, include, url
+    from django.contrib import admin
+    from simple_sso.sso_server.server import Server
+
+    admin.autodiscover()
+    authserver = Server()
+
+    urlpatterns = patterns('',
+        url(r'^admin/', include(admin.site.urls)),
+    )
+
+    urlpatterns += authserver.get_urls()
 
 
 On the client
