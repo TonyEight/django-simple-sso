@@ -133,7 +133,7 @@ class Server(object):
     verification_provider = VerificationProvider
     token_timeout = datetime.timedelta(minutes=5)
     client_admin = ConsumerAdmin
-    auth_view_name = 'django.contrib.auth.views.login'
+    auth_view_name = 'login'
 
     def __init__(self, **kwargs):
         for key, value in kwargs.items():
