@@ -177,8 +177,19 @@ Implementation
 
 Install Caveats
 ===============
-* Install webservices :
-  pip install webservices
+
+* Install webservices:
+
+.. code-block::
+
+    pip install webservices 
+
+* Install requests:
+
+.. code-block::
+
+    pip install requests
+
 
 On the server
 =============
