@@ -225,9 +225,9 @@ Setting up a client
     from simple_sso.sso_client.client import Client
 
     admin.autodiscover()
-    client = Client(settings.SSO_SERVER, settings.SSO_PUBLIC_KEY, settings.SSO_PRIVATE_KEY)
+    sso_client = Client(settings.SSO_SERVER, settings.SSO_PUBLIC_KEY, settings.SSO_PRIVATE_KEY)
 
     urlpatterns = patterns('',
-        url(r'^auth/', include(authserver.get_urls())),
+        url(r'^auth/', include(sso_client.get_urls())),
         url(r'^admin/', include(admin.site.urls)),
     )
