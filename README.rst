@@ -1,6 +1,6 @@
-#######################################
-Django Simple SSO Specification (DRAFT)
-#######################################
+################################
+Django Simple SSO Specifications
+################################
 
 ***********
 Terminology
@@ -175,20 +175,12 @@ The user object contains must contain at least the following data:
 Implementation
 **************
 
-Installing requirements
-=======================
-
-* Install webservices:
+Install
+=======
 
 .. code-block::
 
-    pip install webservices 
-
-* Install requests:
-
-.. code-block::
-
-    pip install requests
+    pip install -e git+git://github.com/TonyEight/django-simple-sso.git@master#egg=django-simple-sso
 
 
 Setting up the server
@@ -216,10 +208,13 @@ Setting up a client
 ===================
 
 * From the admin page on the **Server**, create a new ``Consumer``.
-* Edit the ``settings.py`` file on the **Client** and add those 3 variables:
+* Edit the ``settings.py`` file on the **Client** and add those 4 variables:
+    
+    * ``LOGIN_URL``: it must match the login view from the SSO system - you can simply use the named url conf: ``LOGIN_URL = 'simple-sso-login'``
     * ``SSO_SERVER``: the complete URL of the server pointing to the SSO facility like ``SSO_SERVER = 'http://example.org/authserver/'``
     * ``SSO_PUBLIC_KEY``: the public key provided by the **Server** admin page
     * ``SSO_PRIVATE_KEY``: the public key provided by the **Server** admin page
+
 * Use the ``get_urls`` method of the ``simple_sso.sso_client.client.Client`` class to include the url patterns:
 
 .. code-block:: python
