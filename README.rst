@@ -231,3 +231,19 @@ Setting up a client
         url(r'^auth/', include(sso_client.get_urls())),
         url(r'^admin/', include(admin.site.urls)),
     )
+
+
+Running the included example
+=====================
+
+* Initiate the server
+
+.. code-block:: shell
+
+    python manage.py runserver 8000
+
+* Initiate the client
+
+.. code-block:: shell
+
+    python manage.py runserver 8040 --settings=example.settings_client
