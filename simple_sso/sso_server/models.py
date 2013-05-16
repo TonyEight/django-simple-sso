@@ -52,7 +52,7 @@ class Token(models.Model):
     consumer = models.ForeignKey(Consumer, related_name='tokens')
     request_token = models.CharField(unique=True, max_length=64, default=gen_token_field('request_token'))
     access_token = models.CharField(unique=True, max_length=64, default=gen_token_field('access_token'))
-    timestamp = models.DateTimeField(default=timezone.now())
+    timestamp = models.DateTimeField(default=timezone.now)
     redirect_to = models.CharField(max_length=255)
     user = models.ForeignKey(getattr(settings, 'AUTH_USER_MODEL', 'auth.User'), null=True)
 
