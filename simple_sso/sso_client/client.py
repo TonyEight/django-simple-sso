@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+
 import urllib
 import urlparse
+
+# Django specific
 from django.conf.urls import patterns, url
 from django.contrib.auth import login
 from django.contrib.auth.backends import ModelBackend
@@ -8,6 +11,8 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.views.generic import View
+
+# App specific
 from itsdangerous import URLSafeTimedSerializer
 from webservices.sync import SyncConsumer
 
@@ -76,7 +81,8 @@ class Client(object):
         netloc = parse_result.hostname
         if parse_result.port:
             netloc += ':%s' % parse_result.port
-        server_url = urlparse.urlunparse((parse_result.scheme, netloc, parse_result.path, parse_result.params, parse_result.query, parse_result.fragment))
+        server_url = urlparse.urlunparse((parse_result.scheme, netloc, parse_result.path, parse_result.params,
+                                          parse_result.query, parse_result.fragment))
         return cls(server_url, public_key, private_key)
 
     def get_request_token(self, redirect_to):

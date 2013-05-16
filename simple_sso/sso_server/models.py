@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
+
+import datetime
+
+# Django specific
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
+
+# App specific
 from simple_sso.utils import gen_secret_key
-import datetime
 
 
 def gen_client_key(field):
@@ -46,7 +52,7 @@ class Token(models.Model):
     consumer = models.ForeignKey(Consumer, related_name='tokens')
     request_token = models.CharField(unique=True, max_length=64, default=gen_token_field('request_token'))
     access_token = models.CharField(unique=True, max_length=64, default=gen_token_field('access_token'))
-    timestamp = models.DateTimeField(default=datetime.datetime.now)
+    timestamp = models.DateTimeField(default=timezone.now())
     redirect_to = models.CharField(max_length=255)
     user = models.ForeignKey(getattr(settings, 'AUTH_USER_MODEL', 'auth.User'), null=True)
 

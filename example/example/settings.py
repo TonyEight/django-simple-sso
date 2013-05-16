@@ -18,7 +18,7 @@ DATABASES = {
 
 ALLOWED_HOSTS = []
 
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Amsterdam'
 
 LANGUAGE_CODE = 'en-us'
 
@@ -69,4 +69,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'simple_sso.sso_server',
+    'south'
 )
+
+SOUTH_MIGRATION_MODULES = {
+    'sso_server': 'example.migrations.sso_server',
+}

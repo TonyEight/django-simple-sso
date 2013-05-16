@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 import sys
+import os
 
+def rel(*x):
+    return os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
+
+TEMPLATE_DIRS = (
+    rel('example/example/templates'),
+)
 
 INSTALLED_APPS = [
     'django.contrib.contenttypes',
@@ -27,12 +34,12 @@ def run_tests():
         INSTALLED_APPS = INSTALLED_APPS,
         ROOT_URLCONF = ROOT_URLCONF,
         DATABASES = DATABASES,
+        TEMPLATE_DIRS = TEMPLATE_DIRS,
         TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner',
         SSO_PRIVATE_KEY = 'private',
         SSO_PUBLIC_KEY = 'public',
         SSO_SERVER = 'http://localhost/server/',
     )
-
     # Run the test suite, including the extra validation tests.
     from django.test.utils import get_runner
     TestRunner = get_runner(settings)
