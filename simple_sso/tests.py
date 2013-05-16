@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+
+import urlparse
+
+# Django specific
 from django.conf import settings
 from django.contrib.auth import get_user
 from django.contrib.auth.models import User
@@ -6,12 +10,13 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.test.client import Client
 from django.test.testcases import TestCase
+
+# App specific
 from simple_sso.sso_server.models import Token, Consumer
 from simple_sso.test_urls import test_client
 from simple_sso.test_utils.context_managers import (SettingsOverride, 
     UserLoginContext)
 from simple_sso.utils import gen_secret_key
-import urlparse
 from webservices.sync import DjangoTestingConsumer
 
 
@@ -23,10 +28,14 @@ class SimpleSSOTests(TestCase):
         def get(url, params={}, headers={}, cookies=None, auth=None, **kwargs):
             return Client().get(url, params)
         requests.get = get
-        test_client.consumer = DjangoTestingConsumer(Client(), test_client.server_url, test_client.public_key, test_client.private_key)
+        test_client.consumer = DjangoTestingConsumer(
+            Client(), test_client.server_url, test_client.public_key, test_client.private_key
+        )
 
     def _get_consumer(self):
-        return Consumer.objects.create(name='test', private_key=settings.SSO_PRIVATE_KEY, public_key=settings.SSO_PUBLIC_KEY)
+        return Consumer.objects.create(
+            name='test', private_key=settings.SSO_PRIVATE_KEY, public_key=settings.SSO_PUBLIC_KEY
+        )
     
     def test_walkthrough(self):
         # create a user and a client

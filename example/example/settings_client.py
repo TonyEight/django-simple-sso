@@ -18,7 +18,9 @@ DATABASES = {
 
 ALLOWED_HOSTS = []
 
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Amsterdam'
+
+USE_TZ = False
 
 LANGUAGE_CODE = 'en-us'
 

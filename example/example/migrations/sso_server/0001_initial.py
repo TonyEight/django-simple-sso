@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import datetime
-from django.conf import settings
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
@@ -13,8 +12,8 @@ class Migration(SchemaMigration):
         db.create_table('sso_server_consumer', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
-            ('private_key', self.gf('django.db.models.fields.CharField')(default='zCZK89Dk5gFNVxt6Po3FYooDRUgIr8lkPqq8vDUJjBIIeRQKP1kAlsfGGY9kpuCW', unique=True, max_length=64)),
-            ('public_key', self.gf('django.db.models.fields.CharField')(default='BL7olRs8N2nN1a4fuhuAECASZG3ERgMH4GmdqI8dkUg79Ay80FBxERICTAoMWmg1', unique=True, max_length=64)),
+            ('private_key', self.gf('django.db.models.fields.CharField')(default='gMM41GG14tA4G3MK5fkD6JwgI6oYcvrFkiC3hZvmITprkfYnqwydKqSrS6pTXfMF', unique=True, max_length=64)),
+            ('public_key', self.gf('django.db.models.fields.CharField')(default='lmQiZaB2JmcQLdRQAlzBppYIfi0ajB5s9zDBFCb02PdpUcE8Fyof9UpKKFBT6GvQ', unique=True, max_length=64)),
         ))
         db.send_create_signal('sso_server', ['Consumer'])
 
@@ -22,14 +21,13 @@ class Migration(SchemaMigration):
         db.create_table('sso_server_token', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('consumer', self.gf('django.db.models.fields.related.ForeignKey')(related_name='tokens', to=orm['sso_server.Consumer'])),
-            ('request_token', self.gf('django.db.models.fields.CharField')(default='FOcGALzcHN4D1Fl4RjsOnUUOSIK71QhHhWhLY9EpsrZ5xIJIBHvfZRGCM9KPMkZI', unique=True, max_length=64)),
-            ('access_token', self.gf('django.db.models.fields.CharField')(default='6iOTXc4LLS3fPIJl8wXmfsYPMm6wuwsvUQf7UTVnMX6TeFBpIM4apGOdKiHz8qUt', unique=True, max_length=64)),
-            ('timestamp', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
+            ('request_token', self.gf('django.db.models.fields.CharField')(default='zl0VgmwkBkYncwntdJsHiAuP0WVBO3P5ieRey2kIBL2Vqhr4hW19XDLsoTwYsUIm', unique=True, max_length=64)),
+            ('access_token', self.gf('django.db.models.fields.CharField')(default='CZqpOerQQBL7uBuFrr9q6pRO38CVOD1X0szRgX9lb1vGtb24lton3ryIXQ5WroAV', unique=True, max_length=64)),
+            ('timestamp', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2013, 5, 16, 0, 0))),
             ('redirect_to', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm[getattr(settings, 'AUTH_USER_MODEL', 'auth.User')], null=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], null=True)),
         ))
         db.send_create_signal('sso_server', ['Token'])
-
 
     def backwards(self, orm):
         # Deleting model 'Consumer'
@@ -37,7 +35,6 @@ class Migration(SchemaMigration):
 
         # Deleting model 'Token'
         db.delete_table('sso_server_token')
-
 
     models = {
         'auth.group': {
@@ -80,17 +77,17 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Consumer'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
-            'private_key': ('django.db.models.fields.CharField', [], {'default': "'yPw6AHFmcPFosghzRA2v14JjHjhgEoLlzmOI2luovaZPechIRBDJrRbhQOyJAyaB'", 'unique': 'True', 'max_length': '64'}),
-            'public_key': ('django.db.models.fields.CharField', [], {'default': "'AK35mZLc8n1yKnNMRDqgyrOo31NoSCT1ZqnmZE9UeJZQEjmi8mSmjQmZdqOnLX4o'", 'unique': 'True', 'max_length': '64'})
+            'private_key': ('django.db.models.fields.CharField', [], {'default': "'KCwWe5PrdxoQdFDdukysYOCjbcS2tHfBImYKWbUevq9Xqe5GH4bXaeONhCKIa85W'", 'unique': 'True', 'max_length': '64'}),
+            'public_key': ('django.db.models.fields.CharField', [], {'default': "'MLVg93GHvjZ9uINXbBVwvlPEZBNMfOZKY6z5mTigf1OJLq9F2Z0PnbuEyd4ZfIBh'", 'unique': 'True', 'max_length': '64'})
         },
         'sso_server.token': {
             'Meta': {'object_name': 'Token'},
-            'access_token': ('django.db.models.fields.CharField', [], {'default': "'L8sKiHFRPEL6bN3R1QK2KHDDZ2F2MfyZcJrSr8GkYk64AFa9t0ZTpCw7zbUQiOmF'", 'unique': 'True', 'max_length': '64'}),
+            'access_token': ('django.db.models.fields.CharField', [], {'default': "'kqb56qhtyB6KvpiM8fbQnJ6243Sr7OfRMlJcQFyPeBBnRaARiiY3SCHItRgkpwM5'", 'unique': 'True', 'max_length': '64'}),
             'consumer': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'tokens'", 'to': "orm['sso_server.Consumer']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'redirect_to': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'request_token': ('django.db.models.fields.CharField', [], {'default': "'Es5jnmA77SZcy6dqdbSYGBg62iyPKisEkbd7w2RQsAxPAd8qYnewfPTGEgNGI71J'", 'unique': 'True', 'max_length': '64'}),
-            'timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'request_token': ('django.db.models.fields.CharField', [], {'default': "'F7iu0pSdQOa1rt09JyMMvBQSYmgNcoRPBURyqpRoc7PTmjFHoHp7OymGxMSjOHKd'", 'unique': 'True', 'max_length': '64'}),
+            'timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2013, 5, 16, 0, 0)'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'})
         }
     }
