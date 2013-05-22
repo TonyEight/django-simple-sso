@@ -10,22 +10,19 @@ from django.http import HttpResponse
 from simple_sso.sso_client.client import Client
 
 admin.autodiscover()
-admin.site.login = login_required(admin.site.login, login_url=reverse_lazy('login'))
+admin.site.login = login_required(admin.site.login)
 
 sso_client = Client(settings.SSO_SERVER, settings.SSO_PUBLIC_KEY, settings.SSO_PRIVATE_KEY)
 
 urlpatterns = patterns('',
     url(r'^auth/', include(sso_client.get_urls())),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^login/$', 'django.contrib.auth.views.login', {
-        'template_name': 'login.html'
-    }, name='login'),
 )
 
 # App mock
 urlpatterns += patterns('',
     url('^$', login_required(
         lambda request: HttpResponse('Secret at the client'),
-        login_url=reverse('login')
+        login_url=reverse(settings.LOGIN_URL)
     ), name='root'),
 )

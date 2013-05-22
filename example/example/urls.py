@@ -2,14 +2,14 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 
 # App specific
 from simple_sso.sso_server.server import Server
 
 admin.autodiscover()
-admin.site.login = login_required(admin.site.login, login_url=reverse_lazy('login'))
+admin.site.login = login_required(admin.site.login)
 
 authserver = Server()
 
