@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from simple_sso.sso_client.client import Client
 
 admin.autodiscover()
-admin.site.login = login_required(admin.site.login)
+admin.site.login = login_required(admin.site.login, login_url=reverse_lazy(settings.LOGIN_URL))
 
 sso_client = Client(settings.SSO_SERVER, settings.SSO_PUBLIC_KEY, settings.SSO_PRIVATE_KEY)
 
