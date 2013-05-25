@@ -21,7 +21,8 @@ urlpatterns = patterns('',
 
 # App mock
 urlpatterns += patterns('',
-    url('^$', login_required(
+    url('^$', lambda request: HttpResponse('Welcome at the <strong>client</strong> visit <a href="/secret/">secret</a> or <a href="/admin/">admin</a>.')),
+    url('^secret/$', login_required(
         lambda request: HttpResponse('Secret at the client'),
         login_url=reverse(settings.LOGIN_URL)
     ), name='root'),
