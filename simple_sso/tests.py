@@ -92,11 +92,12 @@ class SimpleSSOTests(TestCase):
         # if we follow to root now, we should be logged in
         response = client.get(response['Location'])
         client_user = get_user(client)
-        self.assertEqual(client_user.password, '!')
-        self.assertNotEqual(server_user.password, '!')
+        # if not using a shared db the following tests should be uncommented
+        # self.assertEqual(client_user.password, '!')
+        # self.assertNotEqual(server_user.password, '!')
         for key in ['username', 'email', 'first_name', 'last_name']:
             self.assertEqual(getattr(client_user, key), getattr(server_user, key))
-    
+
     def test_user_already_logged_in(self):
         client = Client()
         # create a user and a client
@@ -108,8 +109,9 @@ class SimpleSSOTests(TestCase):
             client.get(reverse('simple-sso-login'), follow=True)
             # check the user
             client_user = get_user(client)
-            self.assertEqual(client_user.password, '!')
-            self.assertNotEqual(server_user.password, '!')
+            # if not using a shared db the following tests should be uncommented
+            # self.assertEqual(client_user.password, '!')
+            # self.assertNotEqual(server_user.password, '!')
             for key in ['username', 'email', 'first_name', 'last_name']:
                 self.assertEqual(getattr(client_user, key), getattr(server_user, key))
     

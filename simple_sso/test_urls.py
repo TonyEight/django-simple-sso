@@ -11,6 +11,6 @@ test_client = Client(settings.SSO_SERVER, settings.SSO_PUBLIC_KEY, settings.SSO_
 urlpatterns = patterns('',
     url(r'^server/', include(test_server.get_urls())),
     url(r'^client/', include(test_client.get_urls())),
-    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'admin/login.html'}),
+    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'admin/login.html'}, name='login'),
     url('^$', lambda request: HttpResponse('home'), name='root')
 )
