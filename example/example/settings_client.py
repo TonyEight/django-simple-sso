@@ -70,11 +70,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'simple_sso.sso_server',
 )
 
 LOGIN_URL = 'simple-sso-login'
 SSO_SERVER = 'http://127.0.0.1:8000/authserver/'
 
-SSO_PUBLIC_KEY = 'dxHJmiFWHfXWADYnTm9zBvay3gBkiArNKd9RhLpaH2FVBiUP1g2dVCYlUeHw0VGb'
-SSO_PRIVATE_KEY = 's50T5KtTTGtXTNaadOxi4XuISGFh3xw5WTeoAy51mAC40S4RVj4V7bKVBIGxPG5G'
+SSO_PUBLIC_KEY = 'EpMqqWAiSy9gUo8rhfTd6ujdaLRe3ef1PQXeTDsLcAkda0nPEWFbYRwhcLhfU7Gq'
+SSO_PRIVATE_KEY = 'VPhG4s16DzgWeoBBxusRlspBtXMKaeEMtPMRXoXKc5Cm0CpS4VgbST2EPx7rnwOe'

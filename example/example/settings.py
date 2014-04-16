@@ -72,6 +72,4 @@ INSTALLED_APPS = (
     'south'
 )
 
-SOUTH_MIGRATION_MODULES = {
-    'sso_server': 'example.migrations.sso_server',
-}
+LOGIN_URL = 'login'

@@ -98,8 +98,8 @@ class Client(object):
             user = User.objects.get(username=user_data['username'])
         except User.DoesNotExist:
             user = User(**user_data)
-        user.set_unusable_password()
-        user.save()
+            user.set_unusable_password()
+            user.save()
         return user
 
     def get_urls(self):
